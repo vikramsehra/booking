@@ -10,7 +10,7 @@ import cors from "cors"
 const app = express();
 dotenv.config()
 
-const path = require('path')
+import path from 'path'
 
 const PORT = process.env.PORT || 8800
 
