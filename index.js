@@ -38,17 +38,18 @@ app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
 
+
+// static files
+app.use(express.static(path.resolve(__dirname, process.env.PUBLIC_DIR)));
+app.use("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "dist", "index.html"))
+})
+
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
 
-// static files
-
-app.use(express.static(path.resolve(__dirname, process.env.PUBLIC_DIR)));
-// app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "dist", "index.html"))
-// })
 
 
 // error handler middleware
