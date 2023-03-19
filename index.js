@@ -10,9 +10,13 @@ import cors from "cors"
 const app = express();
 dotenv.config()
 
-import path from 'path'
+import { fileURLToPath } from 'url';
+import path from 'path';
 
-const PORT = process.env.PORT || 8800
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const PORT = process.env.PORT
 
 mongoose.set("strictQuery", false);
 
@@ -40,10 +44,10 @@ app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
 
 // static files
-app.use(express.static(path.join(__dirname, './bookingclient/dist')));
+app.use(express.static(path.resolve(__dirname, process.env.PUBLIC_DIR)));
 
-app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "./bookingclient/dist/index.html"))
+app.use("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "dist", "index.html"))
 })
 
 
