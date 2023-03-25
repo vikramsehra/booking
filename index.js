@@ -10,11 +10,11 @@ import cors from "cors"
 const app = express();
 dotenv.config()
 
-import { fileURLToPath } from 'url';
-import path from 'path';
+// import { fileURLToPath } from 'url';
+// import path from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT
 
@@ -44,11 +44,11 @@ app.use("/api/users", usersRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
 
-// static files
-app.use(express.static(path.resolve(__dirname, process.env.PUBLIC_DIR)));
-app.use("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "dist", "index.html"))
-})
+// // static files
+// app.use(express.static(path.resolve(__dirname, process.env.PUBLIC_DIR)));
+// app.use("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "dist", "index.html"))
+// })
 
 
 // error handler middleware
